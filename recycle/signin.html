@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiseWomen - Sign In</title>
+    <style>
+        /* General Styles */
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #f9fafb;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 2rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+        }
+
+        .text-gray-600 {
+            color: #4b5563;
+        }
+
+        .text-primary-color {
+            color: #556c94; /* Updated primary color */
+        }
+
+        .bg-white {
+            background-color: #ffffff;
+        }
+
+        .rounded-lg {
+            border-radius: 0.5rem;
+        }
+
+        .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            color: #374151;
+            background-color: #ffffff;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .form-group input:focus {
+            border-color: #556c94; /* Updated primary color */
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(85, 108, 148, 0.1); /* Updated primary color */
+        }
+
+        /* Button Styles */
+        .sign-in-btn {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #ffffff;
+            background-color: #556c94; /* Updated primary color */
+            border: none;
+            border-radius: 0.375rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease-in-out;
+        }
+
+        .sign-in-btn:hover {
+            background-color: #475a7d; /* Darker shade for hover */
+        }
+
+        .sign-in-btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(85, 108, 148, 0.1); /* Updated primary color */
+        }
+
+        /* Link Styles */
+        .join-link {
+            color: #556c94; /* Updated primary color */
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .join-link:hover {
+            color: #475a7d; /* Darker shade for hover */
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .form-footer p {
+            font-size: 0.875rem;
+            color: #4b5563;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold text-primary-color mb-2">SIGN IN </h1>
+            <p class="text-sm text-gray-600">Share Your Knowledge, Empower Others</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-lg shadow-md">
+            <form id="loginForm" class="space-y-4">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <button type="submit" class="sign-in-btn">
+                    Sign In
+                </button>
+
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="#" class="join-link">Join Now</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Here you would typically make an API call to your backend
+            console.log('Login attempt:', { username, password });
+
+            // For demo purposes, show success message
+            alert('Login functionality would be implemented here');
+        });
+    </script>
+</body>
+</html>

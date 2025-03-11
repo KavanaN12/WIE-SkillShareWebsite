@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - SkillHub</title>
+    <style>
+        :root {
+    --primary-color: #6366f1;
+    --primary-dark: #4f46e5;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --background: #f9fafb;
+    --white: #ffffff;
+    --error: #ef4444;
+    --success: #22c55e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: var(--white);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1rem 0;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.25rem;
+    text-decoration: none;
+}
+
+.back-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.back-link:hover {
+    color: var(--primary-color);
+}
+
+.register-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.register-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 1.875rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+label {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"] {
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.password-hint {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.interest-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.interest-item:hover {
+    border-color: var(--primary-color);
+    background-color: rgba(99, 102, 241, 0.05);
+}
+
+.interest-item input[type="checkbox"] {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+}
+
+.interest-item span {
+    font-size: 0.875rem;
+    color: var(--text-primary);
+}
+
+.register-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 1rem;
+}
+
+.register-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--text-secondary);
+}
+
+.login-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: var(--error);
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+@media (max-width: 640px) {
+    .register-card {
+        padding: 1.5rem;
+    }
+
+    .interests-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span>SkillHub</span>
+            </div>
+            <a href="/" class="back-link">Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="register-container">
+        <div class="register-card">
+            <h1>Create Your Account</h1>
+            <p class="subtitle">Join our community of learners</p>
+
+            <form id="registerForm" class="register-form" action="/register" method="POST">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age</label>
+                    <input type="number" id="age" name="age" min="13" max="120" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <p class="password-hint">Must be at least 8 characters long</p>
+                </div>
+
+                <div class="form-group">
+                    <label>Fields of Interest</label>
+                    <div class="interests-grid">
+                        <label class="interest-item">
+                            <input type="checkbox" name="interests" value="animation">
+                            <span>Animation</span>
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="interests" value="film">
+                            <span>Film & Video</span>
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="interests" value="photography">
+                            <span>Photography</span>
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="interests" value="ui-ux">
+                            <span>UI/UX Design</span>
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="interests" value="fine-arts">
+                            <span>Fine Arts</span>
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="interests" value="marketing">
+                            <span>Marketing</span>
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="interests" value="graphic-design">
+                            <span>Graphic Design</span>
+                        </label>
+                        <label class="interest-item">
+                            <input type="checkbox" name="interests" value="illustration">
+                            <span>Illustration</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="register-btn">Create Account</button>
+            </form>
+
+            <p class="login-link">Already have an account? <a href="/login">Sign In</a></p>
+        </div>
+    </main>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+        
+            const formData = {
+                fullName: document.getElementById('fullName').value.trim(),
+                age: parseInt(document.getElementById('age').value),
+                email: document.getElementById('email').value.trim(),
+                password: document.getElementById('password').value,
+                interests: Array.from(document.querySelectorAll('input[name="interests"]:checked'))
+                    .map(checkbox => checkbox.value)
+            };
+        
+            // Validate form
+            const errors = validateForm(formData);
+        
+            // Clear previous errors
+            clearErrors();
+        
+            if (Object.keys(errors).length > 0) {
+                // Display errors and stop submission
+                displayErrors(errors);
+                return;
+            }
+        
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+        
+                const result = await response.json();
+        
+                if (response.ok && result.success) {
+                    alert('Registration successful! Redirecting to login...');
+                    window.location.href = "/login"; // Redirect to login page
+                } else {
+                    throw new Error(result.message || 'Something went wrong');
+                }
+            } catch (error) {
+                console.error("🚨 Registration error:", error);
+                alert('Error: ' + error.message);
+            }
+        });
+        
+        function validateForm(data) {
+            const errors = {};
+        
+            if (data.fullName.length < 2) errors.fullName = 'Full name must be at least 2 characters long';
+            if (data.age < 13 || data.age > 120) errors.age = 'Age must be between 13 and 120';
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.email = 'Please enter a valid email address';
+            if (data.password.length < 8) errors.password = 'Password must be at least 8 characters long';
+            if (data.interests.length === 0) errors.interests = 'Please select at least one field of interest';
+        
+            return errors;
+        }
+        
+        function clearErrors() {
+            document.querySelectorAll('.error').forEach(el => el.remove());
+        }
+        
+        function displayErrors(errors) {
+            Object.keys(errors).forEach(field => {
+                const input = document.getElementById(field);
+                const errorElement = document.createElement('p');
+                errorElement.className = 'error';
+                errorElement.style.color = 'red';
+                errorElement.textContent = errors[field];
+        
+                if (field === 'interests') {
+                    const interestsGrid = document.querySelector('.interests-grid');
+                    interestsGrid.parentNode.insertBefore(errorElement, interestsGrid.nextSibling);
+                } else {
+                    input.parentNode.appendChild(errorElement);
+                }
+            });
+        }
+        </script>
+        
+</body>
+</html>

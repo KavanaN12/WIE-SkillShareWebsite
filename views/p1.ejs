@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start Learning - Skills Platform</title>
+    <style>
+        
+:root {
+    --primary-color: #6366f1;
+    --blue: #3b82f6;
+    --red: #ef4444;
+    --green: #22c55e;
+    --purple: #a855f7;
+    --yellow: #eab308;
+    --pink: #ec4899;
+    --indigo: #6366f1;
+    --orange: #f97316;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --background: #f9fafb;
+    --white: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
+    line-height: 1.5;
+}
+
+.navbar {
+    background-color: var(--white);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.sign-in-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.join-btn {
+    background-color: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 0.5rem 1.25rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.join-btn:hover {
+    opacity: 0.9;
+}
+
+.hero {
+    background: linear-gradient(to right, var(--primary-color), #818cf8);
+    padding: 8rem 2rem 4rem;
+    text-align: center;
+    color: var(--white);
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    opacity: 0.9;
+}
+
+.skills-section {
+    max-width: 1200px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.skill-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.skill-icon svg {
+    color: var(--white);
+}
+
+.blue { background-color: var(--blue); }
+.red { background-color: var(--red); }
+.green { background-color: var(--green); }
+.purple { background-color: var(--purple); }
+.yellow { background-color: var(--yellow); }
+.pink { background-color: var(--pink); }
+.indigo { background-color: var(--indigo); }
+.orange { background-color: var(--orange); }
+
+.skill-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.skill-card p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    overflow-y: auto;
+}
+
+.modal-container {
+    position: relative;
+    background-color: var(--white);
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 1200px;
+    width: 90%;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.close-modal:hover {
+    background-color: var(--background);
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.video-card {
+    background: var(--white);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.video-thumbnail {
+    position: relative;
+    padding-top: 56.25%;
+    background-color: #f3f4f6;
+}
+
+.video-thumbnail img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.play-button:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.video-duration {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.75);
+    color: var(--white);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+}
+
+.video-info {
+    padding: 1rem;
+}
+
+.video-title {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.video-channel {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.video-views {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.video-embed {
+    position: relative;
+    padding-top: 56.25%;
+    width: 100%;
+}
+
+.video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    .nav-content {
+        padding: 1rem;
+    }
+
+    .hero {
+        padding: 6rem 1rem 3rem;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .skills-section {
+        padding: 0 1rem;
+        margin: 2rem auto;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .modal-container {
+        margin: 1rem;
+        padding: 1rem;
+        width: calc(100% - 2rem);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <form action="/p1">
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                </svg>
+                <span>Wisdom Waves</span>
+            </div>
+            <div class="nav-links">
+                <a href="/skills/new" class="sign-in-link">Add New Skill</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Start Your Learning Journey</h1>
+            <p>Explore various skills and watch expert tutorials</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="skills-section">
+            <div class="skills-grid">
+                <div class="skill-card" data-skill="animation">
+                    <div class="skill-icon blue">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Animation</h3>
+                    <p>Learn digital animation techniques</p>
+                </div>
+
+                <div class="skill-card" data-skill="film">
+                    <div class="skill-icon red">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                            <line x1="7" y1="2" x2="7" y2="22"></line>
+                            <line x1="17" y1="2" x2="17" y2="22"></line>
+                            <line x1="2" y1="12" x2="22" y2="12"></line>
+                            <line x1="2" y1="7" x2="7" y2="7"></line>
+                            <line x1="2" y1="17" x2="7" y2="17"></line>
+                            <line x1="17" y1="17" x2="22" y2="17"></line>
+                            <line x1="17" y1="7" x2="22" y2="7"></line>
+                        </svg>
+                    </div>
+                    <h3>Film & Video</h3>
+                    <p>Master video production</p>
+                </div>
+
+                <div class="skill-card" data-skill="photography">
+                    <div class="skill-icon green">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+                            <circle cx="12" cy="13" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3>Photography</h3>
+                    <p>Capture stunning photos</p>
+                </div>
+
+                <div class="skill-card" data-skill="ui-ux">
+                    <div class="skill-icon purple">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3>UI and UX</h3>
+                    <p>Design beautiful interfaces</p>
+                </div>
+
+                <div class="skill-card" data-skill="fine-arts">
+                    <div class="skill-icon yellow">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                            <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                            <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                        </svg>
+                    </div>
+                    <h3>Fine Arts</h3>
+                    <p>Express through art</p>
+                </div>
+
+                <div class="skill-card" data-skill="marketing">
+                    <div class="skill-icon pink">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                            <path d="M22 12A10 10 0 0 0 12 2v10z"></path>
+                        </svg>
+                    </div>
+                    <h3>Marketing</h3>
+                    <p>Learn digital marketing</p>
+                </div>
+
+                <div class="skill-card" data-skill="graphic-design">
+                    <div class="skill-icon indigo">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                            <path d="M2 2l7.586 7.586"></path>
+                            <circle cx="11" cy="11" r="2"></circle>
+                        </svg>
+                    </div>
+                    <h3>Graphic Design</h3>
+                    <p>Create stunning designs</p>
+                </div>
+
+                <div class="skill-card" data-skill="illustration">
+                    <div class="skill-icon orange">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                        </svg>
+                    </div>
+                    <h3>Illustration</h3>
+                    <p>Master digital illustration</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-container">
+            <span id="closeModal" class="close-modal">&times;</span>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>const videoData = {
+        'animation': [
+            {
+                title: 'Introduction to Animation Principles',
+                thumbnail: 'https://images.unsplash.com/photo-1616499615673-b214d591b2f5?auto=format&fit=crop&w=800&q=80',
+                duration: '15:30',
+                channel: 'Animation Academy',
+                views: '25K views',
+                youtubeId: 'haa7n3UGyDc'
+            },
+            {
+                title: 'Character Animation Fundamentals',
+                thumbnail: 'https://images.unsplash.com/photo-1633354931133-27c285de18c2?auto=format&fit=crop&w=800&q=80',
+                duration: '12:45',
+                channel: 'Animation Pro',
+                views: '18K views',
+                youtubeId: 'uDqjIdI4bF4'
+            }
+        ],
+        'film': [
+            {
+                title: 'Cinematic Filmmaking Basics',
+                thumbnail: 'https://images.unsplash.com/photo-1585639104226-7e06f5cd8cd6?auto=format&fit=crop&w=800&q=80',
+                duration: '20:15',
+                channel: 'Film School',
+                views: '32K views',
+                youtubeId: 'KX9TsgFFX-c'
+            },
+            {
+                title: 'Video Editing Masterclass',
+                thumbnail: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80',
+                duration: '18:30',
+                channel: 'Edit Pro',
+                views: '15K views',
+                youtubeId: 'O6ERELse_QY'
+            }
+        ],
+        'ui-ux': [
+            {
+                title: 'UI Design Principles',
+                thumbnail: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80',
+                duration: '22:10',
+                channel: 'Design Masters',
+                views: '45K views',
+                youtubeId: 'C72WkcUZvco'
+            },
+            {
+                title: 'UX Research Methods',
+                thumbnail: 'https://images.unsplash.com/photo-1554200876-56c2f25224fa?auto=format&fit=crop&w=800&q=80',
+                duration: '16:40',
+                channel: 'UX Academy',
+                views: '28K views',
+                youtubeId: 'gGZGDnTY454'
+            }
+        ],
+        'photography': [
+            {
+                title: 'Photography Basics for Beginners',
+                thumbnail: 'https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=800&q=80',
+                duration: '25:10',
+                channel: 'Photo Academy',
+                views: '50K views',
+                youtubeId: 'V7z7BAZdt2M'
+            }
+        ],
+        'fine-arts': [
+            {
+                title: 'Introduction to Drawing',
+                thumbnail: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80',
+                duration: '19:20',
+                channel: 'Art Studio',
+                views: '35K views',
+                youtubeId: '3GqPqQH4_bw'
+            }
+        ],
+        'marketing': [
+            {
+                title: 'Digital Marketing Fundamentals',
+                thumbnail: 'https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&w=800&q=80',
+                duration: '28:15',
+                channel: 'Marketing Pro',
+                views: '62K views',
+                youtubeId: 'ZZaH4bJ3FSk'
+            }
+        ],
+        'graphic-design': [
+            {
+                title: 'Graphic Design Principles',
+                thumbnail: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=80',
+                duration: '23:45',
+                channel: 'Design Academy',
+                views: '42K views',
+                youtubeId: 'YqQx75OPRa0'
+            }
+        ],
+        'illustration': [
+            {
+                title: 'Digital Illustration Basics',
+                thumbnail: 'https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=800&q=80',
+                duration: '17:30',
+                channel: 'Illustration Pro',
+                views: '38K views',
+                youtubeId: 'ZyhrYis509A'
+            }
+        ]
+    };
+    
+    // Initialize the application
+    document.addEventListener('DOMContentLoaded', () => {
+        const skillCards = document.querySelectorAll('.skill-card');
+        const modal = document.getElementById('videoModal');
+        const modalContent = document.getElementById('modalContent');
+        const closeModal = document.getElementById('closeModal');
+        let currentSkill = null;
+    
+        // Add click event listeners to skill cards
+        skillCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const skillId = card.dataset.skill;
+                currentSkill = skillId;
+                openVideoModal(skillId);
+            });
+        });
+    
+        // Close modal when clicking the close button
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+            modalContent.innerHTML = ''; // Clear modal content
+        });
+    
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                modalContent.innerHTML = ''; // Clear modal content
+            }
+        });
+    
+        // Function to open video modal
+        function openVideoModal(skillId) {
+            const videos = videoData[skillId];
+            if (!videos) return;
+    
+            const skillTitle = getSkillTitle(skillId);
+            
+            // Create modal content
+            let modalHtml = `
+                <h2>${skillTitle} Videos</h2>
+                <div class="video-grid">
+            `;
+    
+            videos.forEach(video => {
+                modalHtml += `
+                    <div class="video-card">
+                        <div class="video-thumbnail">
+                            <img src="${video.thumbnail}" alt="${video.title}">
+                            <div class="play-button" data-youtube-id="${video.youtubeId}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="white" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                </svg>
+                            </div>
+                            <span class="video-duration">${video.duration}</span>
+                        </div>
+                        <div class="video-info">
+                            <h3 class="video-title">${video.title}</h3>
+                            <p class="video-channel">${video.channel}</p>
+                            <p class="video-views">${video.views}</p>
+                        </div>
+                    </div>
+                `;
+            });
+    
+            modalHtml += '</div>';
+            modalContent.innerHTML = modalHtml;
+    
+            // Add click handlers for play buttons
+            const playButtons = modalContent.querySelectorAll('.play-button');
+            playButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const youtubeId = button.dataset.youtubeId;
+                    const videoCard = button.closest('.video-card');
+                    
+                    // Replace thumbnail with YouTube embed
+                    videoCard.innerHTML = `
+                        <div class="video-embed">
+                            <iframe
+                                width="100%"
+                                height="315"
+                                src="https://www.youtube.com/embed/${youtubeId}?autoplay=1"
+                                title="YouTube video player"
+                                frameborder="0"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen
+                            ></iframe>
+                        </div>
+                    `;
+                });
+            });
+    
+            modal.style.display = 'block';
+        }
+    
+        // Helper function to get skill title
+        function getSkillTitle(skillId) {
+            const skillCard = document.querySelector(`[data-skill="${skillId}"]`);
+            return skillCard ? skillCard.querySelector('h3').textContent : '';
+        }
+    });</script>
+    </form>
+</body>
+</html>

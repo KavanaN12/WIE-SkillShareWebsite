@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Page Title */
+h1 {
+    margin-top: 20px;
+    color: #333;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+/* Skill Block Container */
+div {
+    background: white;
+    padding: 20px;
+    margin: 15px;
+    width: 80%;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Skill Title */
+h2 {
+    color: #444;
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+/* Skill Description */
+p {
+    color: #666;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Hover Effect */
+div:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Add New Skill Button */
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #74ebd5, #56c5c0);
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+a:hover {
+    background: linear-gradient(135deg, #56c5c0, #3baea0);
+    transform: translateY(-2px);
+}
+
+/* Button Active Effect */
+a:active {
+    transform: translateY(0);
+}
+
+    </style>
+</head>
+<body>
+    <h1>Shared Skills</h1>
+<% skills.forEach(skill => { %>
+    <div>
+        <h2><%= skill.title %></h2>
+        <p><%= skill.description %></p>
+    </div>
+<% }) %>
+<a href="/skills/new">Add New Skill</a>
+<a href="/">Back Home</a>
+</body>
+</html>

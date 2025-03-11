@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women Empowerment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: white;
+            transition: background 0.3s, color 0.3s;
+            scroll-behavior: smooth;
+            overflow-y: auto;
+            height: 100vh;
+        }
+        .dark-mode {
+            background: #232526;
+            color: white;
+        }
+        .navbar {
+            background: #007bff;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .navbar input {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+        .navbar button {
+            background: white;
+            color: #007bff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .content {
+            padding-top: 80px;
+            text-align: center;
+        }
+        .importance-section, .faq-section {
+            padding: 40px;
+            background: white;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .importance-section h2, .faq-section h2 {
+            color: black;
+        }
+        .faq {
+            margin-bottom: 10px;
+        }
+        .faq-question {
+            background: white;
+            color: black;
+            padding: 12px;
+            border: 1px solid #ccc;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            outline: none;
+            transition: background 0.3s;
+        }
+        .faq-question:hover {
+            background: #f1f1f1;
+        }
+        .faq-answer {
+            display: none;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .social-media {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            color: black;
+        }
+        .social-media a {
+            display: block;
+            margin: 10px 0;
+            font-size: 18px;
+            text-decoration: none;
+            color: black;
+        }
+        .achievers-slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            margin-top: 20px;
+        }
+        .achiever-images {
+            display: flex;
+            width: 500%;
+            transition: transform 1s;
+        }
+        .achiever-images img {
+            width: 20%;
+            height: auto;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div><strong>Women Empowerment</strong></div>
+        <input type="text" placeholder="Search...">
+        <button onclick="toggleDarkMode()">Switch Mode</button>
+        <button onclick="location.href='signup.html'">Sign In</button>
+    </div>
+    
+    <div class="content">
+        <div class="importance-section">
+            <h2>Why is Women Empowerment Important?</h2>
+            <p>Empowering women is essential for a progressive and just society.</p>
+        </div>
+        <div class="achievers-slider">
+            <div class="achiever-images" id="achieverSlides">
+                <img src="tailoring.jpg" alt="Tailoring Achiever">
+                <img src="cooking.jpg" alt="Cooking Achiever">
+                <img src="driving.jpg" alt="Driving Achiever">
+                <img src="interior.jpg" alt="Interior Designer Achiever">
+            </div>
+        </div>
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq">
+                <button class="faq-question" onclick="toggleFAQ(0)">How does this website help with women empowerment?</button>
+                <div class="faq-answer">This website provides resources, success stories, and information about how women can gain financial independence, leadership opportunities, and education.</div>
+            </div>
+            <div class="faq">
+                <button class="faq-question" onclick="toggleFAQ(1)">How can I contribute or support this cause?</button>
+                <div class="faq-answer">You can contribute by spreading awareness, volunteering, donating to women's empowerment programs, or mentoring young women in need of guidance.</div>
+            </div>
+            <div class="faq">
+                <button class="faq-question" onclick="toggleFAQ(2)">Is there any training or mentorship available?</button>
+                <div class="faq-answer">Yes! We provide links to training sessions, online courses, and mentorship programs that help women gain skills and build confidence.</div>
+            </div>
+            <div class="faq">
+                <button class="faq-question" onclick="toggleFAQ(3)">How do I navigate this website?</button>
+                <div class="faq-answer">You can use the search bar to find specific topics, read articles, view inspirational stories, and join community discussions.</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-media">
+        <h3>Follow Us</h3>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+    </div>
+
+    <script>
+        let achieverIndex = 0;
+        function achieverSlideShow() {
+            const slides = document.getElementById("achieverSlides");
+            achieverIndex = (achieverIndex + 1) % 4;
+            slides.style.transform = `translateX(-${achieverIndex * 20}%)`;
+        }
+        setInterval(achieverSlideShow, 3000);
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        function toggleFAQ(index) {
+            const answers = document.querySelectorAll(".faq-answer");
+            answers[index].style.display = answers[index].style.display === "block" ? "none" : "block";
+        }
+    </script>
+</body>
+</html>

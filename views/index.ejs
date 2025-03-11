@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WomenSkills - Learn & Grow Together</title>
+    <style>
+        :root {
+        --primary-color: #8b5cf6;
+        --primary-dark: #7c3aed;
+        --secondary-color: #f3f4f6;
+        --text-color: #1f2937;
+        --white: #ffffff;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--secondary-color);
+    }
+
+    .navbar {
+        background-color: var(--primary-color);
+        color: var(--white);
+        padding: 1rem 2rem;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+    }
+
+    .nav-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .sign-in-link {
+        color: var(--white);
+        text-decoration: none;
+        transition: opacity 0.2s;
+    }
+
+    .sign-in-link:hover {
+        opacity: 0.8;
+    }
+    .join-btn, .cta-btn {
+        background-color: var(--white);
+        color: var(--primary-color);
+        border: none;
+        padding: 0.5rem 1.25rem;
+        border-radius: 9999px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        text-decoration: none;
+    }
+
+    .join-btn:hover, .cta-btn:hover {
+        background-color: #f3f4f6;
+    }
+
+    .hero {
+        background: linear-gradient(rgba(139, 92, 246, 0.9), rgba(124, 58, 237, 0.9)),
+                    url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1920&q=80');
+        background-size: cover;
+        background-position: center;
+        height: 500px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--white);
+        padding: 2rem;
+        margin-top: 64px;
+    }
+
+    .hero-content {
+        max-width: 800px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        margin-bottom: 2rem;
+    }
+
+    .categories, .featured-videos {
+        max-width: 1200px;
+        margin: 4rem auto;
+        padding: 0 2rem;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+    }
+
+    .category-card {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 1rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+    }
+
+    .category-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-card svg {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .category-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .category-card span {
+        color: #6b7280;
+        font-size: 0.875rem;
+    }
+
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .video-card {
+        background: var(--white);
+        border-radius: 0.5rem;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+    .video-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .video-thumbnail {
+        position: relative;
+        padding-top: 56.25%;
+    }
+
+    .video-thumbnail img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .video-duration {
+        position: absolute;
+        bottom: 0.5rem;
+        right: 0.5rem;
+        background: rgba(0, 0, 0, 0.75);
+        color: var(--white);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    .video-info {
+        padding: 1rem;
+    }
+
+    .video-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    .video-instructor {
+        color: #6b7280;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+    }
+
+    .watch-btn {
+        background-color: #ef4444;
+        color: var(--white);
+        border: none;
+        padding: 0.5rem 1rem;
+        border-radius: 9999px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .watch-btn:hover {
+        background-color: #dc2626;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 2000;
+    }
+
+    .modal-content {
+        background-color: var(--white);
+        padding: 2rem;
+        border-radius: 1rem;
+        max-width: 400px;
+        width: 90%;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #6b7280;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #374151;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #d1d5db;
+        border-radius: 0.375rem;
+        font-size: 1rem;
+    }
+
+    .sign-in-btn {
+        width: 100%;
+        background-color: var(--primary-color);
+        color: var(--white);
+        border: none;
+        padding: 0.75rem;
+        border-radius: 0.375rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .sign-in-btn:hover {
+        background-color: var(--primary-dark);
+    }
+
+    .form-footer {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #6b7280;
+    }
+
+    .join-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2rem;
+        }
+        
+        .hero p {
+            font-size: 1rem;
+        }
+        
+        .category-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    .importance-section, .faq-section {
+            padding: 40px;
+            background: white;
+            margin: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .importance-section h2, .faq-section h2 {
+            color: black;
+        }
+        .faq {
+            margin-bottom: 10px;
+        }
+        .faq-question {
+            background: white;
+            color: black;
+            padding: 12px;
+            border: 1px solid #ccc;
+            width: 100%;
+            text-align: left;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            outline: none;
+            transition: background 0.3s;
+        }
+        .faq-question:hover {
+            background: #f1f1f1;
+        }
+        .faq-answer {
+            display: none;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .social-media {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            color: black;
+        }
+        .social-media a {
+            display: block;
+            margin: 10px 0;
+            font-size: 18px;
+            text-decoration: none;
+            color: black;
+        }
+        .achievers-slider {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            height: 250px;
+            margin-top: 20px;
+        }
+        .achiever-images {
+            display: flex;
+            width: 500%;
+            transition: transform 1s;
+        }
+        .achiever-images img {
+            width: 20%;
+            height: auto;
+            border-radius: 10px;
+            padding: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.skill-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.skill-icon {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.skill-icon svg {
+    color: var(--white);
+}
+
+.blue { background-color: var(--blue); }
+.red { background-color: var(--red); }
+.green { background-color: var(--green); }
+.purple { background-color: var(--purple); }
+.yellow { background-color: var(--yellow); }
+.pink { background-color: var(--pink); }
+.indigo { background-color: var(--indigo); }
+.orange { background-color: var(--orange); }
+
+.skill-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.skill-card p {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 2000;
+    overflow-y: auto;
+}
+
+.modal-container {
+    position: relative;
+    background-color: var(--white);
+    margin: 2rem auto;
+    padding: 2rem;
+    max-width: 1200px;
+    width: 90%;
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.close-modal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.close-modal:hover {
+    background-color: var(--background);
+}
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="logo-icon"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                <span>Wisdom Waves</span>
+            </div>
+            <div class="nav-links">
+                <a href="/login" class="sign-in-link">Sign In</a>
+                <a href="/register" class="join-btn">Sign Up</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Empower Your Journey Through Learning</h1>
+            <p>Join our vibrant community of women sharing skills in knitting, cooking, and coding. Learn from experts, share your knowledge, and grow together.</p>
+            <div class="hero-buttons">
+                <button class="cta-btn">Start Learning Today <a href="/p1">Now</a></button>
+            </div>
+        </div>
+    </header>
+    
+    
+    </div>
+    <main>
+        <section class="categories">
+            <h2>Explore Categories</h2>
+            <div class="category-grid">
+                <div class="category-card" data-category="coding">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    <h3>Coding</h3>
+                    <p>Learn web development, programming, and more</p>
+                    <span>24 videos</span>
+                </div>
+                <div class="category-card" data-category="knitting">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg>
+                    <h3>Knitting</h3>
+                    <p>Master the art of knitting and create beautiful pieces</p>
+                    <span>18 videos</span>
+                </div>
+                <div class="category-card" data-category="cooking">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"></path><path d="M9 18h6"></path><path d="M12 22v-4"></path></svg>
+                    <h3>Cooking</h3>
+                    <p>Discover recipes and culinary techniques</p>
+                    <span>32 videos</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-videos">
+            <h2>Featured Tutorials</h2>
+            <div class="video-grid" id="videoGrid"></div>
+        </section>
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq">
+                <button class="faq-question" onclick="toggleFAQ(0)">How does this website help with women empowerment?</button>
+                <div class="faq-answer">This website provides resources, success stories, and information about how women can gain financial independence, leadership opportunities, and education.</div>
+            </div>
+            <div class="faq">
+                <button class="faq-question" onclick="toggleFAQ(1)">How can I contribute or support this cause?</button>
+                <div class="faq-answer">You can contribute by spreading awareness, volunteering, donating to women's empowerment programs, or mentoring young women in need of guidance.</div>
+            </div>
+            <div class="faq">
+                <button class="faq-question" onclick="toggleFAQ(2)">Is there any training or mentorship available?</button>
+                <div class="faq-answer">Yes! We provide links to training sessions, online courses, and mentorship programs that help women gain skills and build confidence.</div>
+            </div>
+            <div class="faq">
+                <button class="faq-question" onclick="toggleFAQ(3)">How do I navigate this website?</button>
+                <div class="faq-answer">You can use the search bar to find specific topics, read articles, view inspirational stories, and join community discussions.</div>
+            </div>
+    </main>
+
+    <script>
+        let achieverIndex = 0;
+        function achieverSlideShow() {
+            const slides = document.getElementById("achieverSlides");
+            achieverIndex = (achieverIndex + 1) % 4;
+            slides.style.transform = `translateX(-${achieverIndex * 20}%)`;
+        }
+        setInterval(achieverSlideShow, 3000);
+        function toggleFAQ(index) {
+            const answers = document.querySelectorAll(".faq-answer");
+            answers[index].style.display = answers[index].style.display === "block" ? "none" : "block";
+        }
+        // Featured videos data
+        const featuredVideos = [
+            {
+                title: "Introduction to Web Development",
+                instructor: "Sarah Johnson",
+                thumbnail: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80",
+                duration: "15:30",
+                youtubeUrl: "https://youtube.com/watch?v=example1"
+            },
+            {
+                title: "Beginner's Guide to Knitting",
+                instructor: "Emma Thompson",
+                thumbnail: "https://images.unsplash.com/photo-1584992236310-6edddc08acff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80",
+                duration: "20:45",
+                youtubeUrl: "https://youtube.com/watch?v=example2"
+            },
+            {
+                title: "Mastering Italian Cuisine",
+                instructor: "Maria Garcia",
+                thumbnail: "https://images.unsplash.com/photo-1556910103-1c02745aae4d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80",
+                duration: "25:15",
+                youtubeUrl: "https://youtube.com/watch?v=example3"
+            }
+        ];
+
+        // Populate featured videos
+        function populateFeaturedVideos() {
+            const videoGrid = document.getElementById('videoGrid');
+            
+            featuredVideos.forEach(video => {
+                const videoCard = document.createElement('div');
+                videoCard.className = 'video-card';
+                
+                videoCard.innerHTML = `
+                    <div class="video-thumbnail">
+                        <img src="${video.thumbnail}" alt="${video.title}">
+                        <span class="video-duration">${video.duration}</span>
+                    </div>
+                    <div class="video-info">
+                        <h3 class="video-title">${video.title}</h3>
+                        <p class="video-instructor">by ${video.instructor}</p>
+                        <a href="${video.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="watch-btn">
+                            Watch on YouTube
+                        </a>
+                    </div>
+                `;
+                
+                videoGrid.appendChild(videoCard);
+            });
+        }
+
+       
+        // Category card click handlers
+        const categoryCards = document.querySelectorAll('.category-card');
+        categoryCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const category = card.dataset.category;
+                // Here you would typically handle category navigation
+                console.log('Category clicked:', category);
+            });
+        });
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            populateFeaturedVideos();
+        });
+    </script>
+</body>
+</html>

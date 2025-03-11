@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Light gradient background */
+    font-family: Arial, sans-serif;
+}
+
+/* Form Styling */
+form {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 320px;
+    text-align: center;
+}
+
+/* Input Fields */
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out;
+    outline: none;
+}
+
+/* Input Focus Effect */
+input:focus {
+    border-color: #56c5c0; /* Highlighted border */
+    box-shadow: 0px 0px 5px rgba(86, 197, 192, 0.5);
+}
+
+/* Stylish Button */
+button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #74ebd5, #56c5c0);
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Hover Effect */
+button:hover {
+    background: linear-gradient(135deg, #56c5c0, #3baea0);
+    transform: translateY(-2px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Button Active (Click Effect) */
+button:active {
+    transform: translateY(0);
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Disabled Button */
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #74ebd5, #56c5c0);
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Button Hover Effect */
+a:hover {
+    background: linear-gradient(135deg, #56c5c0, #3baea0);
+    transform: translateY(-2px);
+}
+
+/* Button Active Effect */
+a:active {
+    transform: translateY(0);
+}
+
+    </style>
+</head>
+<body>
+    <form action="/skills" method="POST">
+        <input type="text" name="title" placeholder="Skill Title" required>
+        <textarea name="description" placeholder="Describe your skill" required></textarea>
+        <button type="submit">Share</button>
+        <a href="/">Back Home</a>
+    </form>
+</body>
+</html>
